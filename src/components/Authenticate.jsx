@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Authenticate({ token }) {
+export default function Authenticate({ token, setUsername }) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [error, setError] = useState(null);
 
@@ -17,7 +17,14 @@ export default function Authenticate({ token }) {
         }
       );
       const result = await response.json();
+
       setSuccessMessage(result.message);
+
+      if (result.data && result.data.username) {
+        setUsername(result.data.username);
+      } else {
+        setError("Unauthorized!");
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -28,6 +35,7 @@ export default function Authenticate({ token }) {
       <h2>Authenticate</h2>
       {successMessage && <p>{successMessage}</p>}
       {error && <p>{error}</p>}
+
       <button onClick={handleClick}>Authenticate Token!</button>
     </div>
   );

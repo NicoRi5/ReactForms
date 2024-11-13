@@ -1,8 +1,14 @@
 #root {
+  align-items: center;
+  box-shadow: 5px 5px 5px 5px gray;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+h2 {
+  box-shadow: 2px 2px 2px 2px lightcoral;
 }
 
 .logo {
